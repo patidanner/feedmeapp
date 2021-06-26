@@ -1,8 +1,11 @@
 package com.inbound.text.feedMe.service;
 
 import com.inbound.text.feedMe.model.Staging;
+import com.inbound.text.feedMe.repository.StagingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.NumberFormat;
@@ -13,8 +16,12 @@ import java.util.Locale;
 import java.util.Scanner;
 
 @Service
-public class ReadFromFile {
+public class StagingService {
 
+    @Autowired
+    private StagingRepository stagingRepository;
+
+    @Transactional
     public List<Staging> read() throws FileNotFoundException, ParseException {
         String file = "base_teste.txt";
 
@@ -39,11 +46,23 @@ public class ReadFromFile {
             staging.setLojaUltimaCompra(scanner.next());
 
             stagingList.add(staging);
+            //this.saveToDatabase(staging);
         }
         scanner.close();
         long t2 = System.currentTimeMillis();
+        Iterable<Staging> stagingSaveAll = this.saveAllToDatabase(stagingList);
         long delta = t2-t1;
         System.out.println("Demorei "+ delta + " ms para processar o arquivo");
         return stagingList;
+    }
+
+    @Transactional
+    public Staging saveToDatabase(Staging stagingData){
+        return stagingRepository.save(stagingData);
+    }
+
+    @Transactional
+    public Iterable<Staging> saveAllToDatabase(List<Staging> stagingList){
+        return stagingRepository.saveAll(stagingList);
     }
 }
