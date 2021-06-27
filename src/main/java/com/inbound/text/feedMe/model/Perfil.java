@@ -11,18 +11,21 @@ public class Perfil {
     @GeneratedValue
     private Long id;
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Consumidor consumidor;
     private String dataUltimaCompra;
     private Double ticketMedio;
     private Double ticketUltimaCompra;
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Loja lojaMaisFrequente;
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Loja lojaUltimaCompra;
 
+    public Perfil(){
+
+    }
     public Perfil(Long id, Consumidor consumidor, String dataUltimaCompra, Double ticketMedio, Double ticketUltimaCompra, Loja lojaMaisFrequente, Loja lojaUltimaCompra) {
         this.id = id;
         this.consumidor = consumidor;

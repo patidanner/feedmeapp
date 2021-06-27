@@ -17,6 +17,10 @@ public class Consumidor {
     @OneToOne(mappedBy = "consumidor")
     private Perfil perfil;
 
+    public Consumidor(){
+
+    }
+
     public Consumidor(String cpf, Boolean estaPrivate, Boolean estaIncompleto) {
         this.cpf = cpf;
         this.isPrivate = estaPrivate;

@@ -14,6 +14,9 @@ public class Loja {
     @OneToOne(mappedBy = "lojaUltimaCompra")
     private Perfil lojaUltimaCompra;
 
+    public Loja (){
+
+    }
 
     public Loja(String cnpj) {
         this.cnpj = cnpj;

@@ -15,6 +15,33 @@ public class Staging {
     private Double ticketUltimaCompra;
     private String lojaMaisFrequente;
     private String lojaUltimaCompra;
+    private Boolean isValidCpf;
+    private Boolean isValidLojaMaisFrequente;
+    private Boolean isValidLojaUltimaCompra;
+
+    public Boolean getValidCpf() {
+        return isValidCpf;
+    }
+
+    public void setValidCpf(Boolean validCpf) {
+        isValidCpf = validCpf;
+    }
+
+    public Boolean getValidLojaMaisFrequente() {
+        return isValidLojaMaisFrequente;
+    }
+
+    public void setValidLojaMaisFrequente(Boolean validLojaMaisFrequente) {
+        isValidLojaMaisFrequente = validLojaMaisFrequente;
+    }
+
+    public Boolean getValidLojaUltimaCompra() {
+        return isValidLojaUltimaCompra;
+    }
+
+    public void setValidLojaUltimaCompra(Boolean validLojaUltimaCompra) {
+        isValidLojaUltimaCompra = validLojaUltimaCompra;
+    }
 
     public String getCpf() {
         return cpf;
