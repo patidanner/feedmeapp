@@ -1,4 +1,7 @@
 package com.inbound.text.feedMe.service;
+/**
+ * Lógica de validação de https://www.devmedia.com.br/
+ */
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +11,7 @@ import java.util.InputMismatchException;
 public class StagingServiceUtils {
 
     public static boolean isCpf(String cpf) {
-        cpf = cpf.replaceAll("[^a-zA-Z0-9]", " ");
+        cpf = cpf.replaceAll("[^a-zA-Z0-9]", "");
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (cpf.equals("00000000000") ||
                 cpf.equals("11111111111") ||
@@ -65,7 +68,7 @@ public class StagingServiceUtils {
     }
 
     public static boolean isCnpj(String cnpj) {
-        cnpj = cnpj.replaceAll("[^a-zA-Z0-9]", " ");
+        cnpj = cnpj.replaceAll("[^a-zA-Z0-9]", "");
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111") ||
                 cnpj.equals("22222222222222") || cnpj.equals("33333333333333") ||
