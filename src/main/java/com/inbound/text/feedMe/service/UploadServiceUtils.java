@@ -8,7 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.InputMismatchException;
 
 @Component
-public class StagingServiceUtils {
+public class UploadServiceUtils {
+
+    public static String cleanUpCpfOrCnpj(String value){
+        return value.replaceAll("[^0-9/.-]", "");
+    }
 
     public static boolean isCpf(String cpf) {
         cpf = cpf.replaceAll("[^a-zA-Z0-9]", "");

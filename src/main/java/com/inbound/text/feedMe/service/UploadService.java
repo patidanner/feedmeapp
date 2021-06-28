@@ -20,7 +20,8 @@ import java.util.*;
 @Service
 public class UploadService {
 
-    private static String UPLOADED_DIR = "temp/";
+    public static final String NULL = "null";
+    public static final String UPLOADED_DIR = "temp/";
     public static final String CPF = "cpf";
     public static final String PRIVATE = "private";
     public static final String INCOMPLETO = "incompleto";
@@ -33,7 +34,7 @@ public class UploadService {
     @Autowired
     private StagingRepository stagingRepository;
     @Autowired
-    private StagingServiceUtils serviceUtils;
+    private UploadServiceUtils serviceUtils;
 
     @Transactional
     public Boolean processFile(MultipartFile file) throws IOException, ParseException{
@@ -83,7 +84,7 @@ public class UploadService {
     private String getFileDirectory(String fileName) {
         String fileDir;
         if(fileName == null){
-            fileDir = "base_teste.txt";
+            fileDir = "temp/base_teste.txt";
         }else{
             fileDir = UPLOADED_DIR + fileName;
         }
@@ -96,16 +97,21 @@ public class UploadService {
         for (Map<String,String> row :
              rows) {
             staging = new Staging();
-            staging.setCpf(row.get(CPF));
+            staging.setCpf(serviceUtils.cleanUpCpfOrCnpj(row.get(CPF)));
             staging.setIsIncompleto(row.get(INCOMPLETO).equalsIgnoreCase("1") ? Boolean.TRUE : Boolean.FALSE);
             staging.setIsPrivate(row.get(PRIVATE).equalsIgnoreCase("1") ? Boolean.TRUE : Boolean.FALSE);
-            staging.setLojaMaisFrequente(row.get(LOJA_MAIS_FREQUENTE));
-            staging.setTicketUltimaCompra(!row.get(TICKET_ULTIMA_COMPRA).equalsIgnoreCase("null") ? format.parse(row.get(TICKET_ULTIMA_COMPRA)).doubleValue() : null);
-            staging.setTicketMedio(!row.get(TICKET_MEDIO).equalsIgnoreCase("null") ? format.parse(row.get(TICKET_MEDIO)).doubleValue() : null);
-            staging.setLojaUltimaCompra(row.get(LOJA_ULTIMA_COMPRA));
-            staging.setValidCpf(serviceUtils.isCpf(row.get(CPF)));
-            staging.setValidLojaMaisFrequente(serviceUtils.isCnpj(row.get(LOJA_MAIS_FREQUENTE)));
-            staging.setValidLojaUltimaCompra(serviceUtils.isCnpj(row.get(LOJA_ULTIMA_COMPRA)));
+            staging.setLojaMaisFrequente(serviceUtils.cleanUpCpfOrCnpj(row.get(LOJA_MAIS_FREQUENTE)));
+            staging.setTicketUltimaCompra(!row.get(TICKET_ULTIMA_COMPRA).equalsIgnoreCase(NULL)
+                    ? format.parse(row.get(TICKET_ULTIMA_COMPRA)).doubleValue()
+                    : null);
+            staging.setTicketMedio(!row.get(TICKET_MEDIO).equalsIgnoreCase(NULL)
+                    ? format.parse(row.get(TICKET_MEDIO)).doubleValue()
+                    : null);
+            staging.setLojaUltimaCompra(serviceUtils.cleanUpCpfOrCnpj(row.get(LOJA_ULTIMA_COMPRA)));
+            staging.setDataUltimaCompra(row.get(DATA_ULTIMA_COMPRA));
+            staging.setValidCpf(serviceUtils.isCpf(staging.getCpf()));
+            staging.setValidLojaMaisFrequente(serviceUtils.isCnpj(staging.getLojaMaisFrequente()));
+            staging.setValidLojaUltimaCompra(serviceUtils.isCnpj(staging.getLojaUltimaCompra()));
             stagingList.add(staging);
         }
     }
