@@ -8,15 +8,15 @@ public class Staging {
 
     @Id
     private String cpf;
-    private Boolean estaPrivate;
-    private Boolean estaIncompleto;
+    private Boolean isValidCpf;
+    private Boolean isPrivate;
+    private Boolean isIncompleto;
     private String dataUltimaCompra;
     private Double ticketMedio;
     private Double ticketUltimaCompra;
     private String lojaMaisFrequente;
-    private String lojaUltimaCompra;
-    private Boolean isValidCpf;
     private Boolean isValidLojaMaisFrequente;
+    private String lojaUltimaCompra;
     private Boolean isValidLojaUltimaCompra;
 
     public Boolean getValidCpf() {
@@ -51,20 +51,20 @@ public class Staging {
         this.cpf = cpf;
     }
 
-    public Boolean getEstaPrivate() {
-        return estaPrivate;
+    public Boolean getIsPrivate() {
+        return isPrivate;
     }
 
-    public void setEstaPrivate(Boolean estaPrivate) {
-        this.estaPrivate = estaPrivate;
+    public void setIsPrivate(Boolean isPrivate) {
+        this.isPrivate = isPrivate;
     }
 
-    public Boolean getEstaIncompleto() {
-        return estaIncompleto;
+    public Boolean getIsIncompleto() {
+        return isIncompleto;
     }
 
-    public void setEstaIncompleto(Boolean estaIncompleto) {
-        this.estaIncompleto = estaIncompleto;
+    public void setIsIncompleto(Boolean isIncompleto) {
+        this.isIncompleto = isIncompleto;
     }
 
     public String getDataUltimaCompra() {
