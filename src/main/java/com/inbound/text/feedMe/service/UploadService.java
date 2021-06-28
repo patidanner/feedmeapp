@@ -49,7 +49,6 @@ public class UploadService {
     public Iterable<Staging> processEntriesFromFile(String fileName) throws IOException, ParseException {
         String fileDir;
         fileDir = getFileDirectory(fileName);
-        long t1 = System.currentTimeMillis();
         Scanner scanner = new Scanner(new File(fileDir), StandardCharsets.UTF_8);
         Map<String,String> row = new HashMap<>();
         List<Map<String,String>> rows = new ArrayList<>();
@@ -57,10 +56,7 @@ public class UploadService {
         scanner.close();
         List<Staging> stagingList = new ArrayList<>();
         this.stagingPopulator(rows, stagingList);
-        long t2 = System.currentTimeMillis();
         Iterable<Staging> databaseResult = this.saveAll(stagingList);
-        long delta = t2-t1;
-        System.out.println("Demorei "+ delta + " ms para processar o arquivo");
         return databaseResult;
     }
 
