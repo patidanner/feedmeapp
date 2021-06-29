@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>FeedMe!</h1>
+<h2>Selecione um arquivo tipo texto (.txt) de até 10MB para ser processado.</h2>
+
+<form method="POST" action="/feedme" enctype="multipart/form-data">
+  <input type="file" name="file" /><br/><br/>
+  <input type="submit" value="Submit" />
+</form>
+
+<div>
+  <br>
+  <p>ou <a href="/feedmeexample">Carregar base_teste.txt</a></p>
+</div>
+
+</body>
+</html>
