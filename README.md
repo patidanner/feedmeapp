@@ -38,3 +38,7 @@ Configure um novo servidor no pgAdmin 4 da seguinte maneira:
 e visualize o banco de dados feedme.
 
 O banco de dados é recriado toda ver que a aplicação inicializa. Cada submit de arquivo é do tipo update.
+O banco de dados consiste em uma tabela de staging para armazenar os dados do arquivo de texto
+
+![image](https://user-images.githubusercontent.com/84414033/123719305-9cd6a880-d857-11eb-84bd-073a3f258e97.png)
+
