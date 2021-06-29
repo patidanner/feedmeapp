@@ -12,12 +12,12 @@ Java(TM) SE Runtime Environment 18.9 (build 11.0.11+9-LTS-194)
 * Docker
 
 ## Como executar
-Na raíz do projeto, execute `docker-compose up`
+Na raíz do projeto, execute `docker-compose up --build`
 
 ## Como navegar pelo FeedMe!
 ### Home page: http://localhost:8080/
 
-Faça upload do arquivo pela home page e submit. Um arquivo de 7MB (50 mil linhas) leva cerca de 35 segundos para ser processado. É utilizada apenas uma transação para a persistência em banco de dados, que foi configurada para ser feita em batches de 30 inserções.
+Faça upload do arquivo pela home page e submit. É utilizada apenas uma transação para a persistência em banco de dados, que foi configurada para ser feita em batches de 30 inserções. Estatísticas estão disponíveis em console log. 
 
 O arquivo de texto deve seguir o seguinte template de colunas:
 ```
@@ -26,6 +26,9 @@ CPF                PRIVATE     INCOMPLETO  DATA DA ÚLTIMA COMPRA TICKET MÉDIO 
 ```
 
 ### pgAdmin 4: http://localhost:5050/
+Para logar no pgAdmin, utilize as credenciais:
+- Username: admin@admin.com
+- Password: admin
 
 Configure um novo servidor no pgAdmin 4 da seguinte maneira:
 - Host/name address: db
